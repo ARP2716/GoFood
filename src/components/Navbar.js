@@ -51,7 +51,7 @@ export default function Navbar(props) {
                         {(!localStorage.getItem("token")) ?
                             <form className="d-flex">
                                 <Link className="btn bg-white text-success mx-1 " to="/login">Login</Link>
-                                <Link className="btn bg-white text-success mx-1 " to="/Admin">Admin Login</Link>
+                                {/* <Link className="btn bg-white text-success mx-1 " to="/Admin">Admin Login</Link> */}
                                 <Link className="btn bg-white text-success mx-1" to="/signup">Signup</Link>
                             </form> :
                             <div>

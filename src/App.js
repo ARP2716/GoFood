@@ -12,7 +12,7 @@ import {
 // import Navbar from './components/Navbar';
 import Login from './screens/Login';
 import Admin from './screens/Admin';
-import AdminHome from './screens/AdminHome';
+// import AdminHome from './screens/AdminHome';
 import Signup from './screens/Signup';
 import { CartProvider } from './components/ContextReducer';
 import MyOrder from './screens/MyOrder';
@@ -27,7 +27,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/Admin" element={<Admin />} />
-            <Route exact path="/AdminHome" element={<AdminHome />} />
+            {/* <Route exact path="/AdminHome" element={<AdminHome />} /> */}
             <Route exact path="/signup" element={<Signup />} />
             <Route exact path="/myorder" element={<MyOrder />} />
           </Routes>
