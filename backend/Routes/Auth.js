@@ -1,6 +1,6 @@
 const express = require('express')
 const User = require('../models/User')
-const AdminUser = require('../models/AdminUser')
+// const AdminUser = require('../models/AdminUser')
 const Order = require('../models/Orders')
 const router = express.Router()
 const { body, validationResult } = require('express-validator');
@@ -89,42 +89,42 @@ router.post('/login', [
         res.send("Server Error")
     }
 })
-router.post('/Admin', [
-    body('email', "Enter a Valid Email").isEmail(),
-    body('password', "Password cannot be blank").exists(),
-], async (req, res) => {
-    let success = false
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() })
-    }
+// router.post('/Admin', [
+//     body('email', "Enter a Valid Email").isEmail(),
+//     body('password', "Password cannot be blank").exists(),
+// ], async (req, res) => {
+//     let success = false
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//         return res.status(400).json({ errors: errors.array() })
+//     }
 
-    const { email, password } = req.body;
-    try {
-        let Adminuser = await AdminUser.findOne({ email });  //{email:email} === {email}
-        if (!Adminuser) {
-            return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
-        }
+//     const { email, password } = req.body;
+//     try {
+//         let Adminuser = await AdminUser.findOne({ email });  //{email:email} === {email}
+//         if (!Adminuser) {
+//             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
+//         }
 
-        const pwdCompare = await bcrypt.compare(password, Adminuser.password); // this return true false.
-        if (!pwdCompare) {
-            return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
-        }
-        const data = {
-            user: {
-                id: Adminuser.id
-            }
-        }
-        success = true;
-        const authToken = jwt.sign(data, jwtSecret);
-        res.json({ success, authToken })
+//         const pwdCompare = await bcrypt.compare(password, Adminuser.password); // this return true false.
+//         if (!pwdCompare) {
+//             return res.status(400).json({ success, error: "Try Logging in with correct credentials" });
+//         }
+//         const data = {
+//             user: {
+//                 id: Adminuser.id
+//             }
+//         }
+//         success = true;
+//         const authToken = jwt.sign(data, jwtSecret);
+//         res.json({ success, authToken })
 
 
-    } catch (error) {
-        console.error(error.message)
-        res.send("Server Error")
-    }
-})
+//     } catch (error) {
+//         console.error(error.message)
+//         res.send("Server Error")
+//     }
+// })
 
 // Get logged in User details, Login Required.
 router.post('/getuser', fetch, async (req, res) => {
@@ -231,17 +231,17 @@ router.post('/myOrderData', async (req, res) => {
     
 
 });
-router.get('/AllOrdersData', async (req, res) => {
-    try {
+// router.get('/AllOrdersData', async (req, res) => {
+//     try {
         // console.log(req.body.email)
-        let eId = await Order.find({})
+//         let eId = await Order.find({})
         //console.log(eId)
-        res.json({orderData:eId})
-    } catch (error) {
-        res.send("Error",error.message)
-    }
+//         res.json({orderData:eId})
+//     } catch (error) {
+//         res.send("Error",error.message)
+//     }
     
 
-});
+// });
 
 module.exports = router
