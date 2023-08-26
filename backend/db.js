@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-
-const mongoURI = "mongodb+srv://aniketpandit9206:Aniket12345@cluster0.qbvkwy4.mongodb.net/food?retryWrites=true&w=majority";
+require('dotenv').config();
+const mongoURI = process.env.DB_CONNECTION_STRING
 
 module.exports = function (callback) {
     // mongoose.connect("mongodb://127.0.0.1:27017/food", { useNewUrlParser: true }, async (err, result) => {
